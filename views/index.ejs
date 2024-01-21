@@ -1,0 +1,41 @@
+<!-- /views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SumitSavesTime </title>
+</head>
+<body>
+    <!-- <h1>URL Shortner home page !</h1> -->
+    <form action="/" method="post">
+        <label for="URL">Enter URL to convert into short url :</label>
+        <input type="text" id="URL" name="URL">
+        <button type = "submit"> Generate </button>
+    </form>
+    <table>
+        <tr>
+            <td>
+                S.No
+            </td>
+            <td>
+                ShortID
+            </td>
+            <td>
+                URL
+            </td>
+            <td>
+                ClickCount
+            </td>
+        </tr>
+    </table>
+    <!-- <h1>You have successfully loged in </h1> -->
+        <h3>Your short urls are listed here</h3>
+        <ul>
+            <li>URLName   -   ShortURL   -   Number of Clicks</li>
+          <% uurls.forEach(uurl => { %>
+            <li><%= uurl.URL %>   -   <%= uurl.nanoURL %> -  s <%= uurl.count %></li>
+          <% }); %>
+        </ul>
+</body>
+</html>
