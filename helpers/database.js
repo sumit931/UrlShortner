@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-var mongoconnection = mongoose.connect('mongodb://127.0.0.1:27017/URlShortner')
+const config = require("../config/config.js");
+const dbUri = config.dbUri;
+console.log(dbUri,"checking");
+var mongoconnection = mongoose.connect(dbUri)
 .then(()=>{
   console.log("connected to db");
 })

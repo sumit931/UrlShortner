@@ -1,6 +1,6 @@
 const express = require('express');
 const {nanoid} = require('nanoid');
-const {mongoconnection} = require('./connect.js');
+const {mongoconnection} = require('./helpers/database.js');
 mongoconnection;
 const users = require('./models/users.js');
 const urls = require('./models/weburl.js');
@@ -11,8 +11,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const secretkey = "MyNameIsSumit";
-const uri = "mongodb://127.0.0.1:27017";
-var port = 8000;
+const config = require("./config/config.js");
+const port = config.port;
 app.set('view engine','ejs');
 app.set('views','./views');
 app.use(cookieParser());
@@ -65,16 +65,6 @@ app.get('/adding/:newroute',async(req,res)=>{
       .catch(err=>{
         console.log("We find an error = "+error);
       })
-      // (err, result) => {
-      //   if (err) {
-      //     console.error('Error updating document:', err);
-      //   } else {
-      //     console.log('Document updated successfully');
-      //   }
-      //   // Close the Mongoose connection
-      //   mongoose.connection.close();
-      // }
-    // );
   })
   .catch(error => {
     console.log("we are getting error = "+error);
@@ -164,6 +154,7 @@ app.post('/login',async (req,res)=>{
     // console.log("error = "+err);
   })
 })
-app.listen(port,()=>{
-    console.log('server is responding');
-})
+module.exports = app;
+// app.listen(port,()=>{
+//     console.log('server is responding');
+// })
