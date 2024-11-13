@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 // Define User Schema
 const userSchema = new mongoose.Schema({
   name: {
@@ -23,6 +22,9 @@ const userSchema = new mongoose.Schema({
 });
 
 // Create User Model
-const User = mongoose.model('User', userSchema);
+// const User = mongoose.model('User', userSchema);
+require('./../helpers/database.js');
+console.log("testing hone do");
+module.exports = mongoose.model("User",userSchema)
 
-module.exports = User;
+// module.exports = User;

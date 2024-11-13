@@ -1,7 +1,7 @@
 const express = require('express');
 const {nanoid} = require('nanoid');
-const {mongoconnection} = require('./helpers/database.js');
-mongoconnection;
+// const {mongoconnection} = require('./helpers/database.js');
+// mongoconnection;
 const users = require('./models/users.js');
 const urls = require('./models/weburl.js');
 const jwt = require('jsonwebtoken');
@@ -155,6 +155,3 @@ app.post('/login',async (req,res)=>{
   })
 })
 module.exports = app;
-// app.listen(port,()=>{
-//     console.log('server is responding');
-// })

@@ -22,6 +22,7 @@ const URLSchema = new mongoose.Schema({
   
   
   // Create User Model
+  require('./../helpers/database.js');
   const URLS = mongoose.model('URLS', URLSchema);
   
   module.exports = URLS;
