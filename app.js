@@ -10,8 +10,8 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const secretkey = "MyNameIsSumit";
 const config = require("./config/config.js");
+const secretkey = config.secretkey;
 const port = config.port;
 app.set('view engine','ejs');
 app.set('views','./views');
@@ -34,6 +34,7 @@ app.get('/',authenticateToken,async (req,res)=>{
   jwt.verify(token, secretkey, (err, decoded) => {
     if (err) {
       console.error('Token verification failed:', err.message);
+      res.redirect("/login");
     } else {
       // Access the email claim from the decoded token
       username = decoded.name;
@@ -142,7 +143,6 @@ app.post('/login',async (req,res)=>{
       else
       {
         res.render('/login');
-        // console.log("hello how you doing");
       }
     })
     .catch(err => {
@@ -153,7 +153,6 @@ app.post('/login',async (req,res)=>{
   })
   .catch(err => {
     res.render('login');
-    // console.log("error = "+err);
   })
 })
 module.exports = app;

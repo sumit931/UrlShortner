@@ -1,5 +1,6 @@
 const {nanoid} = require('nanoid');
-const secretkey = "MyNameIsSumit";
+const config = require("./../../config/config.js");
+const secretkey = config.secretkey;
 const jwt = require('jsonwebtoken');
 const queries = require("./url.queries");
 
