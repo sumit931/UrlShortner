@@ -21,10 +21,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// Create User Model
-// const User = mongoose.model('User', userSchema);
 require('./../helpers/database.js');
-console.log("testing hone do");
 module.exports = mongoose.model("User",userSchema)
 
 // module.exports = User;

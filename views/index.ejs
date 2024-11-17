@@ -8,9 +8,9 @@
 </head>
 <body>
     <!-- <h1>URL Shortner home page !</h1> -->
-    <form action="/" method="post">
+    <form action="/urls/short-url" method="post">
         <label for="URL">Enter URL to convert into short url :</label>
-        <input type="text" id="URL" name="URL">
+        <input type="text" id="url" name="url">
         <button type = "submit"> Generate </button>
     </form>
     <table>
@@ -34,7 +34,7 @@
         <ul>
             <li>URLName   -   ShortURL   -   Number of Clicks</li>
           <% uurls.forEach(uurl => { %>
-            <li><%= uurl.URL %>   -   <%= uurl.nanoURL %> -  s <%= uurl.count %></li>
+            <li><%= uurl.url %>   -   <%= uurl.nanoURL %> -  s <%= uurl.count %></li>
           <% }); %>
         </ul>
 </body>

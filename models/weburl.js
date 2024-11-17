@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const URLSchema = new mongoose.Schema({
-    URL: {
+const urlSchema = new mongoose.Schema({
+    url: {
       type: String,
       required: true,
     },
@@ -13,17 +13,15 @@ const URLSchema = new mongoose.Schema({
       type: Number,
       default:0
     },
-    Username : {
+    username : {
       type : String,
       required : true,
-      unique :true
     }
   });
   
   
-  // Create User Model
   require('./../helpers/database.js');
-  const URLS = mongoose.model('URLS', URLSchema);
+  const URLS = mongoose.model('URLS', urlSchema);
   
   module.exports = URLS;
   

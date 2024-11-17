@@ -18,6 +18,7 @@ app.set('views','./views');
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use("/urls",require("./api/urls/url.controller.js"));
 
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.token;
@@ -26,6 +27,7 @@ const authenticateToken = (req, res, next) => {
 
   next();
 };
+
 app.get('/',authenticateToken,async (req,res)=>{
   const token = req.cookies.token;
   var username = "";
@@ -39,7 +41,7 @@ app.get('/',authenticateToken,async (req,res)=>{
       console.log('Username:', username);
     }
   });
-  const getAll = await urls.find({'Username':username});
+  const getAll = await urls.find({'username':username});
   res.render('index',{uurls: getAll});
 })
 
@@ -70,37 +72,37 @@ app.get('/adding/:newroute',async(req,res)=>{
     console.log("we are getting error = "+error);
   });
 })
-app.post('/',async(req,res)=>{
+// app.post('/',async(req,res)=>{
   
-  console.log(req.body);
-  const id = nanoid(10);
-  const token = req.cookies.token;
-  var username = "";
-  jwt.verify(token, secretkey, (err, decoded) => {
-    if (err) {
-      console.error('Token verification failed:', err.message);
-    } else {
-      // Access the email claim from the decoded token
-      username = decoded.name;
+//   console.log(req.body);
+//   const id = nanoid(10);
+//   const token = req.cookies.token;
+//   var username = "";
+//   jwt.verify(token, secretkey, (err, decoded) => {
+//     if (err) {
+//       console.error('Token verification failed:', err.message);
+//     } else {
+//       // Access the email claim from the decoded token
+//       username = decoded.name;
       
-      console.log('Username:', username);
-    }
-  });
-  const newData = new urls({
-      URL: req.body.URL,
-      nanoURL : id,
-      Username : username
-  });
-  // res.redirect(req.body.URL);
-  newData.save()
-  .then(result=>{
-    res.redirect('/');
-    console.log("data saved");
-  })
-  .catch(error=>{
-    console.log("error detected = "+error);
-  })
-})
+//       console.log('Username:', username);
+//     }
+//   });
+//   const newData = new urls({
+//       URL: req.body.URL,
+//       nanoURL : id,
+//       Username : username
+//   });
+//   // res.redirect(req.body.URL);
+//   newData.save()
+//   .then(result=>{
+//     res.redirect('/');
+//     console.log("data saved");
+//   })
+//   .catch(error=>{
+//     console.log("error detected = "+error);
+//   })
+// })
 app.post('/register',async (req,res)=>{
 console.log(req.body);
 const currentDate = new Date();
