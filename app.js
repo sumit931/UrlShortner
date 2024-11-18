@@ -1,21 +1,17 @@
 const express = require('express');
-const {nanoid} = require('nanoid');
-// const {mongoconnection} = require('./helpers/database.js');
-// mongoconnection;
 const users = require('./models/users.js');
 const urls = require('./models/weburl.js');
 const jwt = require('jsonwebtoken');
 const app = express();
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const config = require("./config/config.js");
 const secretkey = config.secretkey;
-const port = config.port;
+app.use(cookieParser());
 app.set('view engine','ejs');
 app.set('views','./views');
-app.use(cookieParser());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use("/urls",require("./api/urls/url.controller.js"));
